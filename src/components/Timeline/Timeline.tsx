@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import "./style.css";
 import { TimelineItem } from "../../types/Timeline";
 import getMinMaxDates from "../../utils/getMinMaxDates";
@@ -6,14 +6,14 @@ import Lane from "../Lane";
 import Header from "../Header";
 import { assignLanes } from "../../assignLanes.js";
 import calculateDiffDays from "../../utils/calculateDiffDays.js";
+import { TimelineContext } from "../../context/TimelineProvider";
 
-type Props = {
-  items: TimelineItem[];
-};
 
-export default function Timeline({ items }: Props) {
+export default function Timeline() {
   const MIN_SCALE = 30;
   const MAX_SCALE = 600;
+
+  const { items } = useContext(TimelineContext);
 
   const [scale, setScale] = useState(200);
   const containerRef = useRef(null);
@@ -29,7 +29,6 @@ export default function Timeline({ items }: Props) {
   const lanes = useMemo(() => {
     return assignLanes(items) as TimelineItem[][];
   }, [items]);
-
 
   const handleWheel = (e) => {
     if (!e.ctrlKey) return;

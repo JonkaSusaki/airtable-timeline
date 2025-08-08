@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { TimelineItem } from "../../types/Timeline";
 import calculateDiffDays from "../../utils/calculateDiffDays";
 
 import "./style.css";
+import Modal from "./Modal";
 
 type Props = {
   item: TimelineItem;
@@ -10,12 +12,9 @@ type Props = {
   laneIndex: number;
 };
 
-export default function Item({
-  item,
-  cellWidth,
-  minDate,
-  laneIndex,
-}: Props) {
+export default function Item({ item, cellWidth, minDate, laneIndex }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const duration = calculateDiffDays(new Date(item.start), new Date(item.end));
 
   const offset = calculateDiffDays(minDate, new Date(item.start));
@@ -23,16 +22,25 @@ export default function Item({
 
   const laneColor = colors[laneIndex % colors.length];
 
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
-    <div
-      className="timelineItem item"
-      style={{
-        width: `${(duration + 1) * cellWidth}px`,
-        left: `${(offset + 1) * cellWidth}px`,
-        backgroundColor: laneColor,
-      }}
-    >
-      <span>{item.name}</span>
-    </div>
+    <>
+      <div
+        onClick={() => setIsOpen(true)}
+        className="timelineItem item"
+        style={{
+          width: `${(duration + 1) * cellWidth}px`,
+          left: `${(offset + 1) * cellWidth}px`,
+          backgroundColor: laneColor,
+        }}
+      >
+        <span>{item.name}</span>
+      </div>
+
+      {isOpen && <Modal item={item} close={closeModal} />}
+    </>
   );
 }

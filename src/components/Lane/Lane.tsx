@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { TimelineItem } from "../../types/Timeline";
 import Item from "../Item";
 import "./style.css";
+import Grid from "./Grid";
 
 type Props = {
   lane: TimelineItem[];
@@ -18,22 +19,10 @@ export default function Lane({
   laneIndex,
   sizeOfTimeline,
 }: Props) {
-  const verticalLines = useMemo(
-    () =>
-      Array.from({ length: sizeOfTimeline }, (_, i) => (
-        <div
-          key={`v-${i}`}
-          style={{ minWidth: `${cellWidth}px` }}
-          className="timelineItem timelineGridVertical"
-        />
-      )),
-    [sizeOfTimeline, cellWidth]
-  );
-
 
   return (
     <div className="timelineLane">
-      <div className="timelineGrid">{verticalLines}</div>
+      <Grid cellWidth={cellWidth} sizeOfTimeline={sizeOfTimeline} />
 
       {lane.map((item, index) => {
         return (
@@ -41,7 +30,6 @@ export default function Lane({
             key={item.id}
             item={item}
             cellWidth={cellWidth}
-            itemIndex={index}
             minDate={minDate}
             laneIndex={laneIndex}
           />

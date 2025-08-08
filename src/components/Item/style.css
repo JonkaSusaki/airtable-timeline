@@ -25,4 +25,118 @@ span {
     color: white;
     padding: 0.5%;
     border: 1px solid;
+
+    cursor: pointer;
+}
+
+
+.modal {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    padding: 20px;
+    position: relative;
+}
+
+.modal-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.modal-body {
+    margin-bottom: 16px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+input {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    color: #333;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.25s ease;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin: 10px;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+input:focus {
+    border-color: #6c5ce7;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.4);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+    margin: 10px;
+}
+
+button.danger {
+    background: linear-gradient(135deg, #ff4d4d, #ff7675);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(108, 92, 231, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(108, 92, 231, 0.3);
 }
