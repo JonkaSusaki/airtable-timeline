@@ -1,0 +1,22 @@
+.timelineLane {
+    display: flex;
+    position: relative;
+
+    height: 50px;
+}
+
+.timelineGridVertical {
+    border-left: 0.3px solid rgba(128, 128, 128, 0.315);
+    border-right: 0.3px solid rgba(128, 128, 128, 0.315);
+    opacity: 0.3;
+
+    height: 100%;
+}
+
+.timelineGrid {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+}
